@@ -1,0 +1,9 @@
+#clickbutton {
+    border-radius: 20px; 
+    background-color: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+#clickbutton:hover {
+transform: scale (1.1);
+}
