@@ -1,12 +1,3 @@
-:root {
-  --surface-soft: #f6f8f6;
-  --text: #1f2a27;
-  --muted: #66736f;
-  --line: rgba(31, 42, 39, 0.14);
-  --accent: #2f7d67;
-  --shadow: 0 24px 70px rgba(31, 42, 39, 0.14);
-}
-
 body,
 h1,
 h2,
@@ -75,17 +66,38 @@ a {
 
 .bg1{
     opacity:1;
+    z-index:-3;
 }
 
 .bg2{
     opacity:0;
     position:fixed;
     top:0;
+    left: -8%;
+    width: 116%;
+    height:100vh;
+    object-fit:cover;
+    z-index:-2;
+}
+
+.bg3{
+    position:absolute;
+    top:0;
     left:0;
     width:100vw;
     height:100vh;
-    object-fit:cover;
-    z-index:-1;
+    object-fit: cover;
+    z-index: -1;
+    transform: translateY(100%);
+}
+
+.bg4 {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
 }
 
 .hero{
@@ -99,7 +111,7 @@ a {
     text-align:center;
     left: 34%;
     font-size:70px;
-    z-index:10;
+    z-index:12;
 }
 
 .title1{
@@ -107,9 +119,30 @@ a {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    z-index: 10;
+    z-index: 12;
     opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+.title2{
+    position: absolute;
+    left: 50%;
+    top: 45vh;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 12;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.title3{
+    position: absolute;
+    left: 50%;
+    top: 45vh;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    z-index: 12;
 }
 
 .leaf-container{
@@ -117,7 +150,7 @@ a {
     inset: 0;
     overflow: hidden;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10;
     transition: opacity 0.1s ease;
 }
 
@@ -130,7 +163,7 @@ a {
 .leaf6{
     position:fixed;
     width:1000px;
-    z-index:99999;
+    z-index:10;
 }
 
 /* Vị trí và tốc độ khác nhau */
@@ -226,7 +259,7 @@ a {
     position: fixed;
     top: 13vh;
     left: 35%;
-    z-index: 100;
+    z-index: 10;
     opacity: 0;
     display: flex;
     gap: 40px;
@@ -239,44 +272,76 @@ a {
 
 .move {
     position: fixed;
-    top: 10vh;
-    left: -10%;
-    width: 120%;
+    top: -20%;
+    left: -5%;
+    width: 108%;
+    height: auto;
     pointer-events: none;
     opacity: 0;
-    z-index: 5;
-    animation: cloudMove 18s ease-in-out infinite;
+    z-index: 11;
+    animation: cloudFloat 3s linear infinite alternate;
 }
-@keyframes cloudMove{
+@keyframes cloudFloat{
+    from{
+        transform:
+            translateX(-20px)
+            translateY(-2px);
+    }
+    to{
+        transform:
+            translateX(20px)
+            translateY(2px);
+    }
 
+}
+
+.moveplane {
+    position: fixed;
+    width: 60%;
+    z-index: 10;
+    bottom: -200px;
+    left: -200px;
+    opacity: 0;
+    pointer-events: none;
+    animation: planeFly 12s linear infinite;
+    opacity: 0;
+}
+@keyframes planeFly{
     0%{
         transform:
-            translateX(0)
-            translateY(0);
-    }
-
-    25%{
-        transform:
-            translateX(30px)
-            translateY(-5px);
-    }
-
-    50%{
-        transform:
-            translateX(60px)
-            translateY(0);
-    }
-
-    75%{
-        transform:
-            translateX(30px)
-            translateY(5px);
-    }
-
+        translate(0,0)
+        rotate(0deg);
+}
     100%{
         transform:
-            translateX(0)
-            translateY(0);
+        translate(120vw,-120vh)
+        rotate(-20deg);
     }
+}
 
+#myCanvas{
+    position: fixed;
+    left: 650px;
+    top: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#chapter3{
+    opacity: 0;
+    visibility: hidden;
+    transform:
+        translateX(120vw)
+        scale(0.6);
+}
+
+#chapter2,
+#chapter3{
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    transform-origin: center center;
+    border-radius: 40px;
+    box-shadow: 0 30px 80px rgba(0,0,0,.25);
 }
