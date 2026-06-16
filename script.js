@@ -1,7 +1,7 @@
 const bg1 = document.querySelector(".bg1");
 const bg2 = document.querySelector(".bg2");
 const bg3 = document.querySelector(".bg3");
-const title = document.querySelector(".title");
+const titles = document.querySelectorAll(".title");
 const chapterTitles = document.querySelectorAll(".title1");
 const chapter2Titles = document.querySelectorAll(".title2");
 const leaves = document.querySelector(".leaf-container");
@@ -11,6 +11,8 @@ const plane = document.querySelector(".moveplane");
 const chapter2 = document.querySelector("#chapter2");
 const chapter3 = document.querySelector("#chapter3");
 const chapter3Titles = document.querySelectorAll(".title3");
+const chapter4 = document.querySelector("#chapter4");
+const chapter4Titles = document.querySelectorAll(".title4");
 
 window.addEventListener("scroll", () => {
 const scrollY = window.scrollY;
@@ -20,7 +22,9 @@ const scale = Math.min(2,1 + scrollY * 0.001);
 bg1.style.transform = `scale(${scale})`;
 
 /* title */
-title.style.opacity = Math.max(0, 1 - scrollY / 400);
+titles.forEach(title => {
+    title.style.opacity = Math.max(0,1 - scrollY/400);
+});
 
 /* bg transition */
 const progress = Math.min(1,Math.max(0,(scrollY - 600) / 400));
@@ -45,7 +49,7 @@ cloud.style.opacity = Math.max(0,(progress - 0.7) / 0.3);
 plane.style.opacity = Math.max(0,(progress - 0.7) / 0.3);
 
 /* bg3 transition */
-const transitionProgress = Math.min(1,Math.max(0,(scrollY - 2200) / 800));
+const transitionProgress = Math.min(1,Math.max(0,(scrollY - 2500) / 800));
 const chapter1Opacity =Math.max(0,(progress - 0.7) / 0.3) *Math.max(0,1 - transitionProgress * 2);
 const chapter2Progress = Math.max(0,(transitionProgress - 0.75) / 0.25);
 
@@ -87,76 +91,76 @@ chapter2Titles.forEach(title => {
 )`;
 });
 
-/*bg 4 transition */
-const chapter3Transition = Math.min(
-    1,
-    Math.max(
-        0,
-        (scrollY - 3500) / 1200
-    )
-);
+/* bg 4 transition */
+const chapter3Progress = Math.min(1,Math.max(0,(scrollY - 5500) / 1800));
 
-/* giữ nguyên màn hình */
+//hold full screen
+let chapter2CardProgress = 0;
+if(chapter3Progress > 0.3) {
+    chapter2CardProgress = (chapter3Progress - 0.3) / 0.3;
+}
+    chapter2CardProgress = Math.min(chapter2CardProgress,1);
 
-const holdPhase =
-Math.max(
-    0,
-    (chapter3Transition - 0.2) / 0.3
-);
+//zoom out to card
+const chapter2Scale = 1 - chapter2CardProgress * 0.4;
 
-/* thu nhỏ card */
+//chapter slide
+let chapterSlideProgress = 0;
+if(chapter3Progress > 0.6) {
+    chapterSlideProgress = (chapter3Progress - 0.6) / 0.2;
+}
+chapterSlideProgress = Math.min(chapterSlideProgress,1);
+chapter2.style.transform = `translateX(
+    ${-chapterSlideProgress * 120}vw)
+    scale(${chapter2Scale}
+)`;
 
-const scalePhase =
-Math.min(
-    1,
-    holdPhase
-);
-
-const cardScale =
-1 - scalePhase * 0.4;
-
-/* card đứng yên một chút rồi mới trượt */
-
-const slidePhase =
-Math.max(
-    0,
-    (chapter3Transition - 0.7) / 0.15
-);
-
-chapter2.style.transform = `
-translateX(${-slidePhase * 120}vw)
-scale(${cardScale})
-`;
-
+//chapter 3
 chapter3.style.visibility = "visible";
-chapter3.style.opacity = slidePhase;
+chapter3.style.opacity = chapterSlideProgress;
 
-/* card chapter 3 */
+//card chapter 3 from the right side
+const chapter3X = 120 - chapterSlideProgress * 120;
 
-const chapter3X =
-120 - Math.min(slidePhase,1) * 120;
+//card move in the middle them zoom in
+let chapter3ZoomProgress = 0
+if(chapter3Progress > 0.85) {
+    chapter3ZoomProgress = (chapter3Progress - 0.85) /0.15;
+}
+chapter3ZoomProgress = Math.min(chapter3ZoomProgress,1);
 
-/* zoom cuối */
+//smoothly zoom
+const smoothZoom = Math.pow(chapter3ZoomProgress,2);
+const chapter3Scale = 0.6 + smoothZoom * 0.4;
+chapter3.style.transform = `translateX(
+    ${chapter3X}vw)
+    scale(${chapter3Scale}
+)`;
 
-const zoomPhase =
-Math.max(
-    0,
-    (chapter3Transition - 0.95) / 0.05
-);
-
-const chapter3Scale =
-0.6 + zoomPhase * 0.4;
-
-chapter3.style.transform = `
-translateX(${chapter3X}vw)
-scale(${chapter3Scale})
-`;
-
+//chapter3Titles
 chapter3Titles.forEach(title => {
+    title.style.opacity = chapter3ZoomProgress;
 
-    title.style.opacity =
-        zoomPhase;
+});
 
+/* bg5 transition */
+const chapter4Progress = Math.min (1, Math.max(0,(scrollY - 7500) / 1800));
+
+//chapter 4 go down from the top
+chapter4.style.transform = `translateY(
+      ${(-100 + chapter4Progress * 100)}vh
+)`;
+
+//fade 
+chapter4.style.opacity = chapter4Progress;
+
+//chapter4Titiles
+chapter4Titles.forEach(title => {
+    title.style.opacity = chapter4Progress;
+    title.style.transform = `translate(
+        -50%,
+        ${-30 + chapter4Progress * 30}px
+)`;
 
 });
 
@@ -172,7 +176,6 @@ function createRaindrop() {
     const x = Math.random() * canvas.width;
     const y= 0;
     const speed = Math.random() *50;
-
     return {x,y, speed}
 }
 //draw rain drop
@@ -201,3 +204,4 @@ function drawScene() {
     requestAnimationFrame(drawScene)
 }
 drawScene();
+

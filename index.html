@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test Click</title>
+    <title>My Journey</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
@@ -19,7 +19,11 @@
     class ="bg bg1" 
     src ="background.png" >
     <h1 class="title">MY JOURNEY</h1>
-</section>
+    <h2 class ="title"
+    style="
+    top:92vh;
+    font-size:20px;
+    margin-left: 140px;"> Scroll to Begin </h2>
 <div class="leaf-container">
     <img src="leaf.png" class="leaf1">
     <img src="leaf.png" class="leaf2">
@@ -32,7 +36,9 @@
     <img src="leaf.png" class="leaf9">
     <img src="leaf.png" class="leaf10">
 </div>
-<section class="hero">
+</section>
+<section class="hero" id="1">
+  <div>
     <img 
     class ="bg bg2"
     src ="airpot.png">
@@ -45,6 +51,7 @@
     top:55vh;
     font-size:30px;"
     >The new journey</h2>
+  </div>
 </section>
 <div>
      <img class="move" 
@@ -54,7 +61,7 @@
      <img class="moveplane" 
     src ="plane.png" id="plane">
 </div>
-<section class="hero">
+<section class="hero" id="2">
   <div id ="chapter2">
   <canvas id="myCanvas" width="900" height="630"></canvas>
   <img
@@ -68,14 +75,16 @@
    style="
     top:55vh;
     font-size:30px;">Far form home</h2>
+  <button onclick="window.location.href='chapter1.html'">  Explore </button>
     </div>
 </section>
-<section class="hero">
+
+<section class="hero" id="3">
   <div id ="chapter3">
-  <canvas id="myCanvas" width="900" height="630"></canvas>
-  <img
+  <video autoplay loop muted plays-inline
   class="bg bg4"
-  src="tree.png">
+  src="https://media.istockphoto.com/id/2254901506/video/hand-drawn-animation-of-germination.mp4?s=mp4-640x640-is&k=20&c=ySfCYTLsDaDdvcIixmLwZ2HfmNxG29g26lYWtUAA_F4="
+  type="video/mp4"></video>
   <h1 class="title3"
     style="
     top:45vh;
@@ -84,13 +93,30 @@
    style="
     top:55vh;
     font-size:30px;">Growing Through Change</h2>
+  </div>
+</section>
+
+<section class="hero" id="4">
+  <div id ="chapter4">
+  <img 
+  class="bg bg5"
+  src="stairs.png">
+  <h1 class="title4"
+    style="
+    top:45vh;
+    font-size:70px;">Chapter 4</h1>
+  <h2 class="title4"
+   style="
+    top:55vh;
+    font-size:30px;">Towards Tomorrow</h2>
     </div>
 </section>
+
       <nav class="navigation">
-        <a href = "#">Chapter 1<span></span></a>
-        <a href = "#">Chapter 2<span></span></a>
-        <a href = "#">Chapter 3<span></span></a>
-        <a href = "#">Chapter 4<span></span></a>
+        <a href = "#1">Chapter 1<span></span></a>
+        <a href = "#2">Chapter 2<span></span></a>
+        <a href = "#3">Chapter 3<span></span></a>
+        <a href = "#4">Chapter 4<span></span></a>
       </nav>
 </body>
  
