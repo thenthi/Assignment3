@@ -130,7 +130,7 @@ a {
     inset: 0;
     margin-top: 50px;
     width: 100%;
-    height: 95%;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -346,7 +346,6 @@ a {
     opacity: 0;
     pointer-events: none;
     animation: planeFly 12s linear infinite;
-    opacity: 0;
 }
 @keyframes planeFly{
     0%{
@@ -369,6 +368,14 @@ a {
     pointer-events: none;
     transition: opacity 0.3s ease;
     z-index: 30;
+}
+
+.chapter1{
+    position: fixed;
+    top: 65vh;
+    margin-left: -97px;
+    opacity: 0;
+    z-index: 20;
 }
 
 #chapter3{
@@ -397,8 +404,54 @@ a {
 }
 
 /* Story chapter*/
+.navbar {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(31, 42, 39, 0.1);
+  border-radius: 999px;
+  background: rgba(246, 248, 246, 0.86);
+  box-shadow: 0 10px 28px rgba(31, 42, 39, 0.08);
+
+  z-index: 99999;
+}
+
+.navbar a {
+  position: relative;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 9px 18px;
+  border-radius: 999px;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.navbar a:hover {
+  color: var(--text);
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(31, 42, 39, 0.08);
+}
+.navbar a.active {
+  color: var(--text);
+  background: #ffffff;
+  box-shadow: 0 8px 18px rgba(31, 42, 39, 0.08);
+}
+
+
 .story{
     height: 300vh; 
+    z-index: 15;
 }
 
 .intro {
@@ -408,6 +461,7 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
     animation: introScale 1.2s ease-out;
+    z-index:15;
 }
 
 .text {
@@ -419,7 +473,8 @@ a {
     transform: translateX(-50%);
     text-align: center;
     font-size: 17px;
-    font-family:  Georgia, 'Times New Roman', Times, serif, sans-serif;;
+    font-family:  Georgia, 'Times New Roman', Times, serif, sans-serif;
+    z-index:15;
 }
 
 .text p {
@@ -438,7 +493,8 @@ a {
     gap: 20px;
     animation: appear linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 50%;
+    animation-range: entry 0% cover 40%;
+    z-index:15;
 }
 
 .image img{
@@ -452,7 +508,8 @@ a {
     gap: 20px;
     animation: appear linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 50%;
+    animation-range: entry 0% cover 40%;
+    z-index:15;
 }
 
 .image1 img {
@@ -463,25 +520,59 @@ a {
 .para {
     animation: appear1 linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 50%;
+    animation-range: entry 0% cover 40%;
 }
 
 .para1 {
     animation: appear2 linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 50%;
+    animation-range: entry 0% cover 40%;
 }
 
 .para2 {
     animation: appear3 linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 50%;
+    animation-range: entry 0% cover 40%;
 }
 
 .para3{
     animation: appear4 linear;
     animation-timeline: view();
-    animation-range: entry 0% cover 50%;
+    animation-range: entry 0% cover 40%;
+}
+
+.chapter1-page .move{
+    opacity:1;
+    animation:
+        introScale 1.2s ease-out,
+        cloudFloat 3s linear infinite alternate;
+}
+
+.chapter2-page #myCanvas{
+    opacity:1;
+    margin-left:-750px;
+}
+.chapter2-page .intro,
+.chapter2-page .text{
+    z-index: 50;
+}
+
+.chapter4-page .leaf1,
+.chapter4-page .leaf2,
+.chapter4-page .leaf3,
+.chapter4-page .leaf4,
+.chapter4-page .leaf5,
+.chapter4-page .leaf6{
+    width:20%
+}
+
+.chapter-btn{
+    font-family: 'Permanent Marker', cursive;
+    position: static;
+    margin-left: 180px;
+    margin-top: 100px;
+    margin-bottom: 250px;
+    opacity: 1;
 }
 
 @keyframes introScale{
@@ -549,4 +640,16 @@ a {
         opacity: 1;
         clip-path: inset(0 0 0 0);
     }        
+}
+
+@keyframes cloudAppear{
+    from{
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
 }
