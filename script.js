@@ -1,6 +1,4 @@
-/* =========================
-   SELECT ELEMENTS
-========================= */
+/* SELECT ELEMENTS */
 const bg1 = document.querySelector(".bg1");
 const bg2 = document.querySelector(".bg2");
 const bg3 = document.querySelector(".bg3");
@@ -11,21 +9,22 @@ const leaves = document.querySelector(".leaf-container");
 const navigation = document.querySelector(".navigation");
 const cloud = document.querySelector(".move");
 const plane = document.querySelector(".moveplane");
+const chapter1 = document.querySelector("#chapter1");
 const chapter2 = document.querySelector("#chapter2");
 const chapter3 = document.querySelector("#chapter3");
 const chapter3Titles = document.querySelectorAll(".title3");
 const chapter4 = document.querySelector("#chapter4");
 const chapter4Titles = document.querySelectorAll(".title4");
-const chapter1 = document.querySelector(".chapter1");
+const chapter1btn = document.querySelector(".chapter1-btn");
+const chapter2btn = document.querySelector(".chapter2-btn");
+const chapter3btn = document.querySelector(".chapter3-btn");
 
 window.addEventListener("scroll", () => {
 const scrollY = window.scrollY;
 
 
-/* =========================
-   INTRO SECTION
-   Road zoom + title fade
-========================= */
+/* INTRO SECTION
+   Road zoom + title fade */
 
 /* zoom road */
 const scale = Math.min(2,1 + scrollY * 0.001);
@@ -36,14 +35,20 @@ titles.forEach(title => {
     title.style.opacity = Math.max(0,1 - scrollY/400);
 });
 
-/* =========================
-   CHAPTER 1 APPEAR
-========================= */
+/* CHAPTER 1 APPEAR */
 
 /* bg2 transition */
 const progress = Math.min(1,Math.max(0,(scrollY - 600) / 400));
 bg1.style.opacity = 1 - progress;
-bg2.style.opacity = progress;
+
+
+/* reveal */
+const revealProgress = Math.min(1, Math.max(0, (scrollY - 1200) / 600));
+const reveal = 49.5 - revealProgress * 49.5;
+
+chapter1.style.clipPath = `inset(0 ${reveal}% 0 ${reveal}%)`;
+navigation.style.clipPath = `inset(0 ${reveal}% 0 ${reveal}%)`;
+
 
 /* leaf transition */
 leaves.style.opacity = 1 - progress;
@@ -63,21 +68,14 @@ cloud.style.opacity = Math.max(0,(progress - 0.7) / 0.3);
 plane.style.opacity = Math.max(0,(progress - 0.7) / 0.3);
 
 /* button */
-chapter1.style.opacity = Math.max(0,(progress - 0.7) / 0.3);
+chapter1btn.style.opacity = Math.max(0,(progress - 0.7) / 0.3);
 
-/* =========================
-   CHAPTER 1 → CHAPTER 2
-========================= */
+/* CHAPTER 1 → CHAPTER 2 */
 
 /* bg3 transition */
 const transitionProgress = Math.min(1,Math.max(0,(scrollY - 2500) / 800));
-
-const chapter1Opacity =
-Math.max(0,(progress - 0.7) / 0.3) *
-Math.max(0,1 - transitionProgress * 2);
-
-const chapter2Progress =
-Math.max(0,(transitionProgress - 0.75) / 0.25);
+const chapter1Opacity = Math.max(0,(progress - 0.7) / 0.3) * Math.max(0,1 - transitionProgress * 2);
+const chapter2Progress = Math.max(0,(transitionProgress - 0.75) / 0.25);
 
 bg2.style.opacity = progress * (1 - transitionProgress);
 
@@ -90,34 +88,28 @@ chapterTitles.forEach(title => {
 
 });
 
-chapter1.style.opacity = chapter1Opacity;
 
 chapter1.style.transform = `translateY(
     ${-transitionProgress * 100}vh
 )`;
 
 /* cloud move out */
-cloud.style.opacity = chapter1Opacity;
 
 cloud.style.transform = `translateY(
     ${-transitionProgress * 100}vh
 )`;
 
 /* plane move out */
-plane.style.opacity = chapter1Opacity;
 
 plane.style.transform = `translateY(
     ${-transitionProgress * 100}vh
 )`;
-
-/* airport background move out */
-bg2.style.transform = `translateY(
-    ${-transitionProgress * 100}vh
-)`;
+    
 
 /* chapter 2 background move in */
 bg3.style.transform = `translateY(
     ${(1 - transitionProgress) * 100}vh)`;
+    
 
 /* chapter 2 title fade in */
 chapter2Titles.forEach(title => {
@@ -128,13 +120,16 @@ chapter2Titles.forEach(title => {
 )`;
 });
 
-/* =========================
-   CHAPTER 2 → CHAPTER 3
-========================= */
+chapter2btn.style.opacity = chapter2Progress;
+chapter2btn.style.transform = `translate(
+        -50%,
+        ${30 - chapter2Progress * 30}px
+)`;
+
+/* CHAPTER 2 → CHAPTER 3 */
 
 /* bg 4 transition */
-const chapter3Progress =
-Math.min(1,Math.max(0,(scrollY - 5500) / 1800));
+const chapter3Progress = Math.min(1,Math.max(0,(scrollY - 4500) / 1800));
 
 //hold full screen
 let chapter2CardProgress = 0;
@@ -183,15 +178,12 @@ if(chapter3Progress > 0.85) {
     (chapter3Progress - 0.85) /0.15;
 }
 
-chapter3ZoomProgress =
-Math.min(chapter3ZoomProgress,1);
+chapter3ZoomProgress = Math.min(chapter3ZoomProgress,1);
 
 /* smooth zoom */
-const smoothZoom =
-Math.pow(chapter3ZoomProgress,2);
+const smoothZoom = Math.pow(chapter3ZoomProgress,2);
 
-const chapter3Scale =
-0.6 + smoothZoom * 0.4;
+const chapter3Scale = 0.6 + smoothZoom * 0.4;
 
 chapter3.style.transform = `translateX(
     ${chapter3X}vw)
@@ -203,14 +195,13 @@ chapter3Titles.forEach(title => {
     title.style.opacity = chapter3ZoomProgress;
 });
 
-/* =========================
-   CHAPTER 3 → CHAPTER 4
-========================= */
+/* chapter3button */
+chapter3btn.style.opacity = chapter3ZoomProgress;
+
+/* CHAPTER 3 → CHAPTER 4 */
 
 /* bg5 transition */
-const chapter4Progress =
-Math.min (1,
-Math.max(0,(scrollY - 7500) / 1800));
+const chapter4Progress = Math.min (1, Math.max(0,(scrollY - 7500) / 1800));
 
 /* chapter 4 go down from top */
 chapter4.style.transform = `translateY(
@@ -272,4 +263,3 @@ function drawScene() {
     requestAnimationFrame(drawScene)
 }
 drawScene();
-
