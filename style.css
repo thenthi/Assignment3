@@ -17,6 +17,12 @@ h1 {
   letter-spacing: 0;
 }
 
+/* In the CSS design of this project, I used a typography style inspired by "The Boat", one of the reference websites I researched and presented earlier.
+I also established a simple black-and-white colour palette to support the emotional journey of the story. 
+Darker moments are represented through black backgrounds combined with rain effects to communicate feelings of loneliness, uncertainty, and homesickness. 
+In contrast, brighter moments use white backgrounds, floating leaves, and flowers to symbolise growth, hope, and personal development. 
+By using colour and visual elements in this way, I aimed to reinforce the emotional progression across each chapter while maintaining a consistent visual identity throughout the website. */
+
 body {
   min-height: 100vh;
   color: var(--text);
@@ -30,6 +36,10 @@ button,
 input {
   font: inherit;
 }
+
+/* In this section, I designed the buttons used throughout the website using CSS. Since I had already worked with properties such as `padding`, 
+`border-radius`, `background`, `hover`, and `transform` in my previous two assignments, I felt quite comfortable writing this code and did not encounter many difficulties. 
+I applied the knowledge I had learned earlier and adjusted the styling to match the overall visual identity and storytelling approach of the website. */
 
 button{
     position:absolute;
@@ -56,6 +66,12 @@ button:hover{
 a {
   color: inherit;
 }
+
+/* In this section, I designed the website header, including the site header container, logo, and website title. 
+Similar to the rest of the project, I used a typography style inspired by *The Boat* to maintain a consistent visual identity. 
+The code itself is relatively simple, mainly using CSS properties such as positioning, spacing, and alignment to organise the elements and ensure the header remains clear and accessible throughout the user’s journey on the website.
+ */
+
 .site-header {
   position: fixed;
   z-index: 20;
@@ -75,6 +91,10 @@ a {
   text-decoration:none;
   font-size: 30px;
 }
+
+/* In the following sections of code, I defined the positioning of each background image and chapter title throughout the website. 
+Similar to the previous CSS sections, these styles mainly focus on arranging elements so they appear in the correct location and support the flow of the story. 
+I also incorporated properties such as `transform` and CSS animations to create movement and transition effects, helping the website feel more dynamic, visually engaging, and immersive for users as they scroll through each chapter. */
 
 .bg{
     position:fixed;
@@ -150,24 +170,15 @@ a {
     transition: opacity 0.3s ease;
 }
 
-.title2{
-    position: absolute;
-    left: 50%;
-    top: 45vh;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 12;
-    opacity: 0;
-}
-
+.title2,
 .title3{
     position: absolute;
     left: 50%;
     top: 45vh;
     transform: translateX(-50%);
     text-align: center;
-    opacity: 0;
     z-index: 12;
+    opacity: 0;
 }
 
 .title4{
@@ -179,6 +190,12 @@ a {
     z-index: 12;
     
 }
+
+/* In this section, I created the falling leaf animation used in the Intro background. I applied animation techniques that were introduced in class, 
+such as keyframes and movement effects, to make the leaves continuously fall across the screen. 
+After creating the initial effect, I used ChatGPT to help identify errors and suggest improvements to make the animation run more smoothly. 
+I chose this effect because it helps make the website feel more lively and visually engaging while also supporting the calm and reflective atmosphere at the beginning of the story.
+ */
 
 .leaf-container{
     position: fixed;
@@ -297,6 +314,11 @@ a {
     }
 }
 
+/* In this section, I created a navigation menu to make it easier for users to move between chapters. 
+While scrolling is the main interaction of the website and is used to reveal most of the visual effects, 
+I wanted to provide an alternative way for users to explore the story. 
+By clicking on the navigation links, users can quickly jump between chapters while still experiencing the transitions and animations, making the website more flexible and accessible to different browsing preferences. */
+
 .navigation {
     opacity: 0;
     position: fixed;
@@ -343,6 +365,11 @@ a {
   transform: translateY(-1px);
 }
 
+/* For the individual chapter pages, I followed a similar approach to the main website by creating classes for all images and decorative elements. 
+I then used CSS properties such as positioning, `transform`, and animations to arrange and animate these elements throughout the page. 
+As users scroll through the story, the animated backgrounds and moving visual elements help create a more engaging reading experience, making the website feel more dynamic and preventing it from becoming visually repetitive or static. */
+
+/* Story chapter*/
 .move {
     position: fixed;
     top: -20%;
@@ -391,6 +418,10 @@ a {
     }
 }
 
+/* As mentioned earlier, I created the `myCanvas` element to challenge myself by experimenting with a new coding technique that I had not used before. 
+The rain effect plays an important role in Chapter 2, helping to communicate the feelings of sadness, loneliness, and hopelessness that are described in the story. 
+In this section of the CSS, my main focus was on positioning the canvas on the screen and controlling properties such as opacity and transitions so that the rain effect appears at the right moment and integrates smoothly with the chapter's visual atmosphere. */
+
 #myCanvas{
     position: fixed;
     left: 650px;
@@ -399,6 +430,9 @@ a {
     transition: opacity 0.3s ease;
     z-index: 30;
 }
+
+/* In this section, I created the leaf animations used in the Intro background. I applied animation techniques that were introduced in class to make the leaves continuously fall across the screen. 
+After building the initial effect, I used ChatGPT to help identify errors and suggest improvements to make the animation smoother. I chose this effect because it helps make the website feel more lively and visually engaging while supporting the calm and reflective mood at the beginning of the story. */
 
 #chapter1{
     position: fixed;
@@ -433,7 +467,12 @@ a {
     transform: translateY(-100vh);
 }
 
-/* Story chapter*/
+/*This is a secondary navigation bar designed for the individual chapter pages after users click the Explore button. 
+The idea was inspired by *The Boat*, but instead of placing the navigation horizontally in the header, 
+I redesigned it as a vertical navigation bar positioned on the right side of the screen. 
+This allows users to move between chapters more easily without the navigation covering the story content while scrolling. 
+I also customised the hover and default states of the navigation buttons to create a clearer visual distinction and make the interface feel more interactive and visually engaging. */
+
 .navbar {
   position: fixed;
   top: 50%;
@@ -469,6 +508,12 @@ a {
   background: #ffffff;
   box-shadow: 0 8px 18px rgba(31, 42, 39, 0.08);
 }
+
+/* In the remaining sections, I created different classes for the introduction, paragraphs, and images within each chapter. 
+These classes allowed me to apply a variety of animation and scroll effects to different elements throughout the story. 
+Rather than having every image and paragraph appear in the same way, I designed multiple animations to create a more dynamic and engaging reading experience. 
+I learned many of these animation techniques from YouTube tutorials and then adapted them to fit the visual style and storytelling approach of my project. 
+By combining different effects, I aimed to make scrolling feel more interactive and encourage users to stay engaged with the narrative. */
 
 .intro {
     text-align: center;
@@ -669,3 +714,16 @@ a {
         transform: scale(1);
     }
 }
+
+
+/* REFRENCES */
+/* Codegrid (2026) *Choreographing a Scroll Animation That Hides Four Phases Inside One ScrollTrigger Pin (GSAP)*, YouTube, https://www.youtube.com/watch?v=Qq8ht-fUY64, accessed 24 June 2026.
+
+EtsYahBoyVeekz (2024) *Create Realistic Rain Effect with Javascript & Canvas*, YouTube, https://www.youtube.com/watch?v=bYQXAEb0IXg, accessed 25 June 2026.
+
+Hand (2026) *Line drawing animation*, iStock, https://www.istockphoto.com/video/hand-drawn-animation-of-germination-gm2254901506-668189256, accessed 24 June 2026.
+
+Plant A (2023) *Hand drawn*, iStock, https://www.istockphoto.com/en/video/animation-of-a-plant-growing-gm1563908429-527394813, accessed 24 June 2026.
+
+Snippets Code (2024) *Animate On Scroll With Just 3 LINES Of CSS (No Libraries Needed)*, YouTube, https://www.youtube.com/watch?v=0TnO1GzKWPc, accessed 24 June 2026.
+*/
